@@ -8,8 +8,8 @@ type cliCommand struct {
 	callback    func() error
 }
 
-func main() {
-	commands := [string]cliCommand{
+func getCommands() map[string]cliCommand {
+	return map[string]cliCommand{
 		"help": {
 			name:        "help",
 			description: "Displays a help message",
@@ -21,5 +21,26 @@ func main() {
 			callback:    commandExit,
 		},
 	}
+}
 
+func main() {
+	for {
+
+	}
+
+}
+
+func commandHelp() error {
+	commands := getCommands()
+
+	fmt.Println("Available commands")
+	for _, command := range commands {
+		fmt.Printf("%s : %s \n", command.name, command.description)
+	}
+	return nil
+}
+
+func commandExit() error {
+	fmt.Println("Exiting the Pokedex")
+	return nil
 }
