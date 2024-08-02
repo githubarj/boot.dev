@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 type cliCommand struct {
 	name        string
@@ -17,14 +22,34 @@ func getCommands() map[string]cliCommand {
 		},
 		"exit": {
 			name:        "exit",
-			description: "Exit the Pokedex",
+			description: "Exits the Pokedex",
 			callback:    commandExit,
 		},
 	}
 }
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	commands := getCommands()
+
 	for {
+		fmt.Printf("\nPokedex >  ")
+		scanner.Scan()
+		input := strings.TrimSpace(scanner.Text())
+
+		if cmd, ok := commands[input]; ok {
+			err := cmd.callback()
+			if err != nil {
+				fmt.Println("Error: ", err)
+			}
+
+		} else {
+			fmt.Println("Unkown command, type 'help' for available commands")
+		}
+
+		if input == "exit" {
+			break
+		}
 
 	}
 
@@ -33,7 +58,7 @@ func main() {
 func commandHelp() error {
 	commands := getCommands()
 
-	fmt.Println("Available commands")
+	fmt.Printf("\nWelcome to the Pokedex!\nAvailable commands:\n\n")
 	for _, command := range commands {
 		fmt.Printf("%s : %s \n", command.name, command.description)
 	}
