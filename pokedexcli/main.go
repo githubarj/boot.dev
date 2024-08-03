@@ -29,11 +29,13 @@ func getCommands() map[string]cliCommand {
 }
 
 func main() {
+	// creating a scanner to collect user input
 	scanner := bufio.NewScanner(os.Stdin)
 	commands := getCommands()
 
 	for {
 		fmt.Printf("\nPokedex >  ")
+		// calling a method on scanner to actually collect input
 		scanner.Scan()
 		input := strings.TrimSpace(scanner.Text())
 
