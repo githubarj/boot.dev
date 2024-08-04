@@ -21,14 +21,16 @@ func main() {
 			continue
 		}
 
-		if cmd, ok := commands[input[0]]; ok {
-			err := cmd.callback()
-			if err != nil {
-				fmt.Println("Error: ", err)
-			}
+		cmd, ok := commands[input[0]]
 
-		} else {
+		if !ok {
 			fmt.Println("Unkown command, type 'help' for available commands")
+			continue
+		}
+
+		err := cmd.callback()
+		if err != nil {
+			fmt.Println("Error: ", err)
 		}
 
 	}
