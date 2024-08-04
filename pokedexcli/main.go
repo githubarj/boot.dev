@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 func main() {
 	// creating a scanner to collect user input
@@ -15,9 +14,9 @@ func main() {
 		fmt.Printf("\nPokedex >  ")
 		// calling a method on scanner to actually collect input
 		scanner.Scan()
-		input := strings.TrimSpace(scanner.Text())
+    input := cleanInput(scanner.Text())
 
-		if cmd, ok := commands[input]; ok {
+		if cmd, ok := commands[input[0]]; ok {
 			err := cmd.callback()
 			if err != nil {
 				fmt.Println("Error: ", err)
@@ -27,7 +26,7 @@ func main() {
 			fmt.Println("Unkown command, type 'help' for available commands")
 		}
 
-		if input == "exit" {
+		if input[0] == "exit" {
 			break
 		}
 
