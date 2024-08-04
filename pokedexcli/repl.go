@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -44,5 +45,6 @@ func commandHelp() error {
 
 func commandExit() error {
 	fmt.Println("Exiting the Pokedex")
+  os.Exit(0)
 	return nil
 }
