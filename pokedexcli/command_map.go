@@ -15,5 +15,13 @@ func callbackMap() error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(resp)
+
+	fmt.Println("Location Areas")
+
+	for _, area := range resp.Results {
+		fmt.Printf(" -%s\n", area.Name)
+
+	}
+
+	return nil
 }
