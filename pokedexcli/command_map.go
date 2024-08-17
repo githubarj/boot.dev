@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
-
 	"github.com/githubarj/pokedexcli/internal/pokeapi"
+	"log"
 )
 
 func callbackMap() error {
