@@ -28,8 +28,13 @@ func getCommands() map[string]cliCommand {
 		},
 		"map": {
 			name:        "map",
-			description: "Lists some location areas",
+			description: "Lists 20 location areas , prints the next 20 on each successive call",
 			callback:    callbackMap,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Lists the previous 20 location areas",
+			callback:    callbackMapb,
 		},
 		"exit": {
 			name:        "exit",
@@ -65,7 +70,6 @@ func StartRepl(cfg *config) {
 		if err != nil {
 			fmt.Println("Error: ", err)
 		}
-
 	}
 
 }
