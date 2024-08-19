@@ -14,7 +14,7 @@ func cleanInput(str string) []string {
 }
 
 type cliCommand struct {
-	callback    func() error
+	callback    func(*config) error
 	name        string
 	description string
 }
@@ -61,7 +61,7 @@ func StartRepl(cfg *config) {
 			continue
 		}
 
-		err := cmd.callback()
+		err := cmd.callback(cfg)
 		if err != nil {
 			fmt.Println("Error: ", err)
 		}
