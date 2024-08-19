@@ -39,7 +39,7 @@ func getCommands() map[string]cliCommand {
 	}
 }
 
-func StartRepl() {
+func StartRepl(cfg *config) {
 	// creating a scanner to collect user input
 	scanner := bufio.NewScanner(os.Stdin)
 	commands := getCommands()
